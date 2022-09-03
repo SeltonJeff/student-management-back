@@ -1,17 +1,22 @@
 import { Router } from "express";
 
+import StudentRoutes from "./apps/student/studentRoutes";
+import studentRoutes from "./apps/student/studentRoutes";
+
 class RootRoutes {
   public routes: Router;
 
   constructor() {
     this.routes = Router();
     this.setAppRoutes();
-  }
 
-  private setAppRoutes() {
     this.routes.get("/", (req, res) =>
       res.status(200).json({ message: "Hello project!" })
     );
+  }
+
+  private setAppRoutes() {
+    this.routes.use("/student", studentRoutes);
   }
 }
 
