@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: postgres
+    restart: always
+    container_name: "student_db"
+    environment:
+      POSTGRES_DB: student_management
+      POSTGRES_USER: docker
+      POSTGRES_PASSWORD: docker123
+    ports:
+      - '5432:5432'
+    volumes:
+      - db:/var/lib/postgresql/data
+
+volumes:
+  db:
+    driver: local
+networks:
+  default:
+    driver: bridge

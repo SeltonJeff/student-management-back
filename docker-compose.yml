@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  api:
+    build:
+      context: .
+      dockerfile: dockerfile
+    container_name: "student_api"
+    env_file:
+      - ./.env
+    ports:
+      - "3000:3000"
+    networks:
+      - api
+
+networks:
+  api:
+    driver: bridge

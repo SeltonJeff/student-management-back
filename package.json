@@ -1,11 +1,15 @@
 {
-  "name": "teste-tecnico",
+  "name": "student-management",
   "version": "1.0.0",
-  "main": "index.js",
+  "main": "server.ts",
   "license": "MIT",
   "scripts": {
+    "migration:create": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:create",
+    "migration:generate": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:generate src/database/entities -d src/database/dataSource.ts",
+    "migration:up": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:run -d src/database/dataSource.ts",
+    "migration:down": "./node_modules/.bin/ts-node ./node_modules/.bin/typeorm migration:revert -d src/database/dataSource.ts",
     "start:dev": "nodemon --watch 'src/' --exec 'ts-node src/server.ts' -e ts",
-    "start": "ts-node src/server.ts"
+    "start": "ts-node --transpile-only src/server.ts"
   },
   "dependencies": {
     "@types/cors": "^2.8.12",
@@ -13,13 +17,20 @@
     "cors": "^2.8.5",
     "dotenv": "^16.0.2",
     "express": "^4.18.1",
+    "express-handler-errors": "^2.3.1",
+    "pg": "^8.8.0",
+    "reflect-metadata": "^0.1.13",
     "ts-node": "^10.9.1",
     "typeorm": "^0.3.9",
-    "typescript": "^4.8.2"
+    "typescript": "^4.8.2",
+    "uuid": "^8.3.2"
   },
   "devDependencies": {
+    "@types/config": "^3.3.0",
     "@types/express": "^4.17.13",
     "@types/node": "^18.7.14",
+    "@types/uuid": "^8.3.4",
+    "eslint": "^8.23.0",
     "nodemon": "^2.0.19",
     "prettier": "^2.7.1"
   }

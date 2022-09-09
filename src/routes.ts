@@ -1,6 +1,6 @@
 import { Router } from "express";
 
-import studentRoutes from "./apps/student/studentRoutes";
+import studentRoutes from "./routes/studentRoutes";
 
 class RootRoutes {
   public routes: Router;
