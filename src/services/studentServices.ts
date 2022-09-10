@@ -62,15 +62,6 @@ class StudentServices {
           status: 404,
           message: "Student not found.",
         };
-      if (data.cpf) {
-        const checkCpf = await this.repository.findOneBy({ cpf: data.cpf });
-        if (checkCpf)
-          return {
-            code: "409.001",
-            status: 409,
-            message: "Already have a user with this document.",
-          };
-      }
 
       await this.repository.update({ ra }, data);
       return { ra: checkExists.ra };

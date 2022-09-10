@@ -40,7 +40,8 @@ class StudentController {
   static async editStudent(req: Request, res: Response) {
     const { ra } = req.params;
     const data: TStudentData = req.body;
-    const result = await studentServices.editStudent(ra, data);
+    const { ra: RA, cpf, ...attr } = data;
+    const result = await studentServices.editStudent(ra, { ...attr });
     if (!isError) res.status(200).json(result);
     else errorHandler(res, result as TCustomErrorData);
   }

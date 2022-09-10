@@ -10,9 +10,7 @@ services:
       - ./.env
     ports:
       - "3000:3000"
-    networks:
-      - api
 
 networks:
-  api:
+  default:
     driver: bridge

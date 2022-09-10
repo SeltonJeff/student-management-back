@@ -42,9 +42,7 @@ class StudentEntity extends BaseEntity {
   @Column({ nullable: true })
   email!: string;
 
-  @Column({
-    unique: true,
-  })
+  @Column()
   cpf!: string;
 }
 

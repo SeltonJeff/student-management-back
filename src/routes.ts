@@ -1,6 +1,7 @@
 import { Router } from "express";
 
 import studentRoutes from "./routes/studentRoutes";
+import { authClient } from "./middlewares/auth";
 
 class RootRoutes {
   public routes: Router;
@@ -15,7 +16,7 @@ class RootRoutes {
   }
 
   private setAppRoutes() {
-    this.routes.use("/student", studentRoutes);
+    this.routes.use("/student", authClient, studentRoutes);
   }
 }
 
