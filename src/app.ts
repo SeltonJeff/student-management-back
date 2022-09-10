@@ -4,6 +4,7 @@ import cors from "cors";
 import { DataSource } from "typeorm";
 import AppRoutes from "./routes";
 import dataSource from "./dataSource";
+import authServices from "./services/authServices";
 
 class App {
   public application: Application;
@@ -24,7 +25,10 @@ class App {
   private useDatabase() {
     dataSource
       .initialize()
-      .then(() => console.log("db initialized."))
+      .then(() => {
+        console.log("db initialized.");
+        authServices.registerAminUser();
+      })
       .catch((error) => console.log("db init failed.", error));
   }
 }

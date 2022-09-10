@@ -3,7 +3,7 @@ import StudentEntity, { TStudentData } from "../entities/studentEntity";
 import { QueryDeepPartialEntity } from "typeorm/query-builder/QueryPartialEntity";
 
 class StudentServices {
-  static repository = dataSource.getRepository("Student");
+  static repository = dataSource.getRepository("student");
 
   static async listStudent() {
     try {
@@ -29,9 +29,9 @@ class StudentServices {
       const check = await this.repository.findOneBy({ cpf: data.cpf });
       if (check && check.cpf === data.cpf)
         return {
-          code: "409.001",
+          code: "ERR_DOCUMENT_ALREADY_IN_USE",
           status: 409,
-          message: "Already have a user with this document.",
+          message: "Este cpf já possui cadastro.",
         };
 
       const curStudent = new StudentEntity();
@@ -43,8 +43,8 @@ class StudentServices {
       return { ra: curStudent.ra };
     } catch (error: any) {
       return {
-        code: error.code || "500",
-        message: error.message || "Internal server error.",
+        code: error.code || "ERR_INTERNAL_ERROR",
+        message: error.message || "Erro no servidor.",
         status: error.status || 500,
       };
     }
@@ -58,17 +58,17 @@ class StudentServices {
       const checkExists = await this.repository.findOneBy({ ra });
       if (!checkExists)
         return {
-          code: "404.001",
+          code: "ERR_STUDENT_NOT_FOUND",
           status: 404,
-          message: "Student not found.",
+          message: "Estudante não encontrado.",
         };
 
       await this.repository.update({ ra }, data);
       return { ra: checkExists.ra };
     } catch (error: any) {
       return {
-        code: error.code || "500",
-        message: error.message || "Internal server error.",
+        code: error.code || "ERR_INTERNAL_ERROR",
+        message: error.message || "Erro no servidor.",
         status: error.status || 500,
       };
     }
@@ -83,9 +83,9 @@ class StudentServices {
         };
       } else {
         return {
-          code: "404.001",
+          code: "ERR_STUDENT_NOT_FOUND",
           status: 404,
-          message: "Student not found.",
+          message: "Estudante não encontrado.",
         };
       }
     } catch (error) {

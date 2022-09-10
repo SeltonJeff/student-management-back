@@ -1,7 +1,8 @@
 import { Router } from "express";
+import { authClient, authUser } from "./middlewares/auth";
 
 import studentRoutes from "./routes/studentRoutes";
-import { authClient } from "./middlewares/auth";
+import authRoutes from "./routes/authRoutes";
 
 class RootRoutes {
   public routes: Router;
@@ -9,14 +10,11 @@ class RootRoutes {
   constructor() {
     this.routes = Router();
     this.setAppRoutes();
-
-    this.routes.get("/", (req, res) =>
-      res.status(200).json({ message: "Hello project!" })
-    );
   }
 
   private setAppRoutes() {
-    this.routes.use("/student", authClient, studentRoutes);
+    this.routes.use("/auth", authClient, authRoutes);
+    this.routes.use("/student", authClient, authUser, studentRoutes);
   }
 }
 

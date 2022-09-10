@@ -8,15 +8,22 @@ import {
   ObjectID,
 } from "typeorm";
 
-export type TStudentData = {
-  ra: string;
-  name: string;
+export type TLogin = {
   email: string;
-  cpf: string;
+  password: string;
 };
 
-@Entity("student")
-class StudentEntity extends BaseEntity {
+export type TUserData = {
+  _id: string;
+  createdAt: string;
+  updatedAt: string;
+  name: string;
+  email: string;
+  password: string;
+};
+
+@Entity("user")
+class UserEntity extends BaseEntity {
   @PrimaryGeneratedColumn("uuid")
   _id!: ObjectID;
 
@@ -31,11 +38,6 @@ class StudentEntity extends BaseEntity {
   })
   updatedAt?: Date;
 
-  @Column({
-    unique: true,
-  })
-  ra!: string;
-
   @Column()
   name!: string;
 
@@ -43,7 +45,7 @@ class StudentEntity extends BaseEntity {
   email!: string;
 
   @Column()
-  cpf!: string;
+  password!: string;
 }
 
-export default StudentEntity;
+export default UserEntity;

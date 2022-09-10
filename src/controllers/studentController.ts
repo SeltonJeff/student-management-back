@@ -1,10 +1,7 @@
 import { Request, Response } from "express";
 import studentServices from "../services/studentServices";
 import { TStudentData } from "../entities/studentEntity";
-import errorHandler, {
-  isError,
-  TCustomErrorData,
-} from "../../utils/errorHandler";
+import errorHandler, { isError, TCustomErrorData } from "../utils/errorHandler";
 
 class StudentController {
   static async listStudents(req: Request, res: Response) {
@@ -12,9 +9,9 @@ class StudentController {
     if (!isError(result)) res.status(200).json(result);
     else
       errorHandler(res, {
-        code: "500.001",
+        code: "ERR_STUDENT_LISTING",
         status: 500,
-        message: "Student listing error.",
+        message: "Erro ao listar estudantes.",
       });
   }
 
@@ -24,9 +21,9 @@ class StudentController {
     if (!isError(result)) res.status(200).json(result);
     else
       errorHandler(res, {
-        code: "500.001",
+        code: "ERR_STUDENT_LISTING",
         status: 500,
-        message: "Student listing error.",
+        message: "Erro ao listar estudantes.",
       });
   }
 

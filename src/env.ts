@@ -3,7 +3,11 @@ config();
 
 interface IEnv {
   APP_PORT: number;
-  APP_SECRET: string;
+  APP_CLIENT_SECRET: string;
+  APP_TOKEN_SECRET: string;
+  APP_TOKEN_DURATION: number;
+  APP_REFRESH_TOKEN_DURATION: number;
+  APP_CRYPT_KEY: string;
   TYPEORM_CONNECTION: string;
   TYPEORM_HOST: string;
   TYPEORM_DATABASE: string;
@@ -18,7 +22,13 @@ interface IEnv {
 
 class Env implements IEnv {
   public APP_PORT = Number(process.env.APP_PORT);
-  public APP_SECRET = String(process.env.APP_SECRET);
+  public APP_CLIENT_SECRET = String(process.env.APP_CLIENT_SECRET);
+  public APP_TOKEN_SECRET = String(process.env.APP_TOKEN_SECRET);
+  public APP_TOKEN_DURATION = Number(process.env.APP_TOKEN_DURATION);
+  public APP_REFRESH_TOKEN_DURATION = Number(
+    process.env.APP_REFRESH_TOKEN_DURATION
+  );
+  public APP_CRYPT_KEY = String(process.env.APP_CRYPT_KEY);
   public TYPEORM_CONNECTION = String(process.env.TYPEORM_CONNECTION);
   public TYPEORM_HOST = String(process.env.TYPEORM_HOST);
   public TYPEORM_DATABASE = String(process.env.TYPEORM_DATABASE);
