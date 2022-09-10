@@ -15,3 +15,15 @@ export default (res: Response, data: TCustomErrorData) => {
     res.status(data.status).json(data);
   else res.status(200).json(data);
 };
+
+const knowErrors = {
+  ERR_INVALID_CLIENT: 401,
+
+  ERR_USER_NOT_FOUND: 404,
+  ERR_INCORRECT_USER_DATA: 401,
+  ERR_USER_NOT_AUTHORIZED: 401,
+
+  ERR_STUDENT_LISTING: 500,
+  ERR_STUDENT_NOT_FOUND: 404,
+  ERR_DOCUMENT_ALREADY_IN_USE: 409,
+};
