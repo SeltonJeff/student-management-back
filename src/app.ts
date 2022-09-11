@@ -1,7 +1,6 @@
 import express, { Application } from "express";
 import * as bodyParser from "body-parser";
 import cors from "cors";
-import { DataSource } from "typeorm";
 import AppRoutes from "./routes";
 import dataSource from "./dataSource";
 import authServices from "./services/authServices";
