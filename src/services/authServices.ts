@@ -15,14 +15,14 @@ class AuthServices {
       return {
         code: "ERR_USER_NOT_FOUND",
         status: 404,
-        message: "Dados de login incorretos.",
+        message: "Credenciais inválidas.",
       };
     }
     if (password !== decrypt(user.password)) {
       return {
         code: "ERR_INCORRECT_USER_DATA",
         status: 401,
-        message: "Dados de login incorretos.",
+        message: "Credenciais inválidas.",
       };
     }
     const { password: pass, createdAt, updatedAt, ...attr } = user as TUserData;
