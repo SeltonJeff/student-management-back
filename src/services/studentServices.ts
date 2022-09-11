@@ -26,13 +26,21 @@ class StudentServices {
 
   static async newStudent(data: TStudentData) {
     try {
-      const check = await this.repository.findOneBy({ cpf: data.cpf });
-      if (check && check.cpf === data.cpf)
+      const checkCpf = await this.repository.findOneBy({ cpf: data.cpf });
+      const checkRa = await this.repository.findOneBy({ ra: data.ra });
+      if (checkCpf && checkCpf.cpf === data.cpf)
         return {
           code: "ERR_DOCUMENT_ALREADY_IN_USE",
           status: 409,
           message: "Este cpf já possui cadastro.",
         };
+      if (checkRa && checkRa.ra === data.ra) {
+        return {
+          code: "ERR_RA_ALREADY_IN_USE",
+          status: 409,
+          message: "Este RA já possui cadastro.",
+        };
+      }
 
       const curStudent = new StudentEntity();
       curStudent.ra = data.ra;
