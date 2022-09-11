@@ -59,11 +59,11 @@ class StudentServices {
   }
 
   static async editStudent(
-    ra: string,
+    _id: string,
     data: QueryDeepPartialEntity<StudentEntity>
   ) {
     try {
-      const checkExists = await this.repository.findOneBy({ ra });
+      const checkExists = await this.repository.findOneBy({ _id });
       if (!checkExists)
         return {
           code: "ERR_STUDENT_NOT_FOUND",
@@ -71,8 +71,8 @@ class StudentServices {
           message: "Estudante não encontrado.",
         };
 
-      await this.repository.update({ ra }, data);
-      return { ra: checkExists.ra };
+      await this.repository.update({ _id }, data);
+      return { _id: checkExists._id };
     } catch (error: any) {
       return {
         code: error.code || "ERR_INTERNAL_ERROR",
@@ -82,10 +82,10 @@ class StudentServices {
     }
   }
 
-  static async deleteStudent(ra: string) {
+  static async deleteStudent(_id: string) {
     try {
-      if (await this.repository.findOneBy({ ra })) {
-        await this.repository.delete({ ra });
+      if (await this.repository.findOneBy({ _id })) {
+        await this.repository.delete({ _id });
         return {
           message: "Student has ben deleted.",
         };

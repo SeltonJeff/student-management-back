@@ -35,17 +35,17 @@ class StudentController {
   }
 
   static async editStudent(req: Request, res: Response) {
-    const { ra } = req.params;
+    const { id } = req.params;
     const data: TStudentData = req.body;
     const { ra: RA, cpf, ...attr } = data;
-    const result = await studentServices.editStudent(ra, { ...attr });
+    const result = await studentServices.editStudent(id, { ...attr });
     if (!isError) res.status(200).json(result);
     else errorHandler(res, result as TCustomErrorData);
   }
 
   static async deleteStudent(req: Request, res: Response) {
-    const { ra } = req.params;
-    const result = await studentServices.deleteStudent(ra);
+    const { id } = req.params;
+    const result = await studentServices.deleteStudent(id);
     errorHandler(res, result as TCustomErrorData);
   }
 }

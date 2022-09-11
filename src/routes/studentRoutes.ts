@@ -13,8 +13,8 @@ class StudentRoutes {
     this.routes.get("/", studentController.listStudents);
     this.routes.get("/:query", studentController.listStudentsByQuery);
     this.routes.post("/", studentController.newStudent);
-    this.routes.patch("/:ra", studentController.editStudent);
-    this.routes.delete("/:ra", studentController.deleteStudent);
+    this.routes.patch("/:id", studentController.editStudent);
+    this.routes.delete("/:id", studentController.deleteStudent);
   }
 }
 

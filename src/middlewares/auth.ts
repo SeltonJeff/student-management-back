@@ -5,10 +5,10 @@ import Env from "../env";
 export const authClient = (req: Request, res: Response, next: NextFunction) => {
   const { client_secret } = req.headers;
   if (!client_secret || client_secret !== Env.APP_CLIENT_SECRET) {
-    return res.status(401).json({
+    return res.status(403).json({
       code: "ERR_INVALID_CLIENT",
-      status: 401,
-      message: "Client inválido.",
+      status: 403,
+      message: "Cliente inválido.",
     });
   }
   next();
