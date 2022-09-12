@@ -9,7 +9,11 @@ class StudentServices {
     try {
       return await this.repository.find();
     } catch (error) {
-      console.log(error);
+      return {
+        code: "ERR_STUDENT_LISTING",
+        status: 500,
+        message: "Erro ao listar estudantes.",
+      };
     }
   }
 
@@ -20,7 +24,11 @@ class StudentServices {
           student.name.includes(query) || student.email.includes(query)
       );
     } catch (error) {
-      console.log(error);
+      return {
+        code: "ERR_STUDENT_LISTING",
+        status: 500,
+        message: "Erro ao listar estudantes.",
+      };
     }
   }
 

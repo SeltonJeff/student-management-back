@@ -7,24 +7,14 @@ class StudentController {
   static async listStudents(req: Request, res: Response) {
     const result = await studentServices.listStudent();
     if (!isError(result)) res.status(200).json(result);
-    else
-      errorHandler(res, {
-        code: "ERR_STUDENT_LISTING",
-        status: 500,
-        message: "Erro ao listar estudantes.",
-      });
+    else errorHandler(res, result as TCustomErrorData);
   }
 
   static async listStudentsByQuery(req: Request, res: Response) {
     const { query } = req.params;
     const result = await studentServices.listStudentsByQuery(query);
     if (!isError(result)) res.status(200).json(result);
-    else
-      errorHandler(res, {
-        code: "ERR_STUDENT_LISTING",
-        status: 500,
-        message: "Erro ao listar estudantes.",
-      });
+    else errorHandler(res, result as TCustomErrorData);
   }
 
   static async newStudent(req: Request, res: Response) {
@@ -46,7 +36,8 @@ class StudentController {
   static async deleteStudent(req: Request, res: Response) {
     const { id } = req.params;
     const result = await studentServices.deleteStudent(id);
-    errorHandler(res, result as TCustomErrorData);
+    if (!isError) res.status(200).json(result);
+    else errorHandler(res, result as TCustomErrorData);
   }
 }
 
