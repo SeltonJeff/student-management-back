@@ -21,7 +21,9 @@ class StudentServices {
     try {
       return (await this.repository.find()).filter(
         (student) =>
-          student.name.includes(query) || student.email.includes(query)
+          student.name.includes(query.toUpperCase()) ||
+          student.email.includes(query) ||
+          student.cpf.includes(query)
       );
     } catch (error) {
       return {
@@ -52,7 +54,7 @@ class StudentServices {
 
       const curStudent = new StudentEntity();
       curStudent.ra = data.ra;
-      curStudent.name = data.name;
+      curStudent.name = data.name.toUpperCase();
       curStudent.email = data.email;
       curStudent.cpf = data.cpf;
       await this.repository.save(curStudent);
