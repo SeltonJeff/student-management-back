@@ -6,6 +6,9 @@ This application has developed with NodeJs, TypeScript, Express and TypeORM.
 * `yarn start` or `npm run start`
 
 ## For use on local development
+First step is run database, for this, with docker use:
+* `cd postgres` and `docker-compose up` 
+* After `cd ../`
 * `yarn` or `npm install`
 * `yarn start:dev` or `npm run start:dev`
 
@@ -103,6 +106,9 @@ If application is running, just access [application_url]/api-docs.
 * Implement yup for payload validations
 * Implement integrations tests
 * Implement build with bundle for best perform on production mode
+
+## What was missing
+* Implement unit tests
 
 ## Layers process
 <p align="center">
