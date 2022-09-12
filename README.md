@@ -6,13 +6,18 @@ This application has developed with NodeJs, TypeScript, Express and TypeORM.
 * `yarn start` or `npm run start`
 
 ## For use on local development
-* Use 'start:dev' command for serve it, and watch files in development mode.
+* `yarn` or `npm install`
+* `yarn start:dev` or `npm run start:dev`
 
 ## For use on production
 * Use 'start' command for run this or use 'docker-compose up' for expose it in a docker container.
 
 ## Used pattern
 In this project I used an abstract MVC in a layer pattern, separating these layers into folders as you can see below.
+
+## Api documentation
+If application is running, just access [application_url]/api-docs.
+</br>Example in localhost: http://localhost:3000/api-docs
 
 ## Path structures
 ### How to use paths
@@ -93,7 +98,6 @@ In this project I used an abstract MVC in a layer pattern, separating these laye
   * For restart server in dev mode
 * prettier
   * For code format
-
 
 ## Proposed improvements
 * Implement yup for payload validations
